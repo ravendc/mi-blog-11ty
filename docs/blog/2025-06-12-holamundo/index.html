@@ -1,0 +1,652 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Las partes de la oración en inglés</title>
+		<meta name="description" content="Primeras bases, no te las puedes saltar">
+		<link rel="alternate" href="/mi-blog-11ty/feed/feed.xml" type="application/atom+xml" title="Eleventy Base Blog v9">
+		
+		
+		
+		<style>/* This is an arbitrary CSS string added to the bundle */
+/* Defaults */
+:root {
+	--font-family: -apple-system, system-ui, sans-serif;
+	--font-family-monospace: Consolas, Menlo, Monaco, Andale Mono WT, Andale Mono, Lucida Console, Lucida Sans Typewriter, DejaVu Sans Mono, Bitstream Vera Sans Mono, Liberation Mono, Nimbus Mono L, Courier New, Courier, monospace;
+}
+
+/* Theme colors */
+:root {
+	--color-gray-20: #e0e0e0;
+	--color-gray-50: #C0C0C0;
+	--color-gray-90: #333;
+
+	--background-color: #fff;
+
+	--text-color: var(--color-gray-90);
+	--text-color-link: #082840;
+	--text-color-link-active: #5f2b48;
+	--text-color-link-visited: #17050F;
+
+	--syntax-tab-size: 2;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--color-gray-20: #e0e0e0;
+		--color-gray-50: #C0C0C0;
+		--color-gray-90: #dad8d8;
+
+		/* --text-color is assigned to --color-gray-_ above */
+		--text-color-link: #1493fb;
+		--text-color-link-active: #6969f7;
+		--text-color-link-visited: #a6a6f8;
+
+		--background-color: #15202b;
+	}
+}
+
+
+/* Global stylesheet */
+* {
+	box-sizing: border-box;
+}
+
+@view-transition {
+	navigation: auto;
+}
+
+html,
+body {
+	padding: 0;
+	margin: 0 auto;
+	font-family: var(--font-family);
+	color: var(--text-color);
+	background-color: var(--background-color);
+}
+html {
+	overflow-y: scroll;
+}
+body {
+	max-width: 40em;
+}
+
+/* https://www.a11yproject.com/posts/how-to-hide-content/ */
+.visually-hidden:not(:focus):not(:active) {
+	clip: rect(0 0 0 0);
+	clip-path: inset(50%);
+	height: 1px;
+	overflow: hidden;
+	position: absolute;
+	white-space: nowrap;
+	width: 1px;
+}
+
+/* Fluid images via https://www.zachleat.com/web/fluid-images/ */
+img{
+  max-width: 100%;
+}
+img[width][height] {
+  height: auto;
+}
+img[src$=".svg"] {
+  width: 100%;
+  height: auto;
+  max-width: none;
+}
+video,
+iframe {
+	width: 100%;
+	height: auto;
+}
+iframe {
+	aspect-ratio: 16/9;
+}
+
+p:last-child {
+	margin-bottom: 0;
+}
+p {
+	line-height: 1.5;
+}
+
+li {
+	line-height: 1.5;
+}
+
+a[href] {
+	color: var(--text-color-link);
+}
+a[href]:visited {
+	color: var(--text-color-link-visited);
+}
+a[href]:hover,
+a[href]:active {
+	color: var(--text-color-link-active);
+}
+
+main,
+footer {
+	padding: 1rem;
+}
+main :first-child {
+	margin-top: 0;
+}
+
+header {
+	border-bottom: 1px dashed var(--color-gray-20);
+}
+
+#skip-link {
+	text-decoration: none;
+	background: var(--background-color);
+	color: var(--text-color);
+	padding: 0.5rem 1rem;
+	border: 1px solid var(--color-gray-90);
+	border-radius: 2px;
+}
+
+/* Prevent visually-hidden skip link fom pushing content around when focused */
+#skip-link.visually-hidden:focus {
+	position: absolute;
+	top: 1rem;
+	left: 1rem;
+	/* Ensure it is positioned on top of everything else when it is shown */
+	z-index: 999;
+}
+
+.links-nextprev {
+	display: flex;
+	justify-content: space-between;
+	gap: .5em 1em;
+	list-style: "";
+	border-top: 1px dashed var(--color-gray-20);
+	padding: 1em 0;
+}
+.links-nextprev > * {
+	flex-grow: 1;
+}
+.links-nextprev-next {
+	text-align: right;
+}
+
+table {
+	margin: 1em 0;
+}
+table td,
+table th {
+	padding-right: 1em;
+}
+
+pre,
+code {
+	font-family: var(--font-family-monospace);
+}
+pre:not([class*="language-"]) {
+	margin: .5em 0;
+	line-height: 1.375; /* 22px /16 */
+	-moz-tab-size: var(--syntax-tab-size);
+	-o-tab-size: var(--syntax-tab-size);
+	tab-size: var(--syntax-tab-size);
+	-webkit-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+	direction: ltr;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	overflow-x: auto;
+}
+code {
+	word-break: break-all;
+}
+
+/* Header */
+header {
+	display: flex;
+	gap: 1em;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center;
+	padding: 1em;
+}
+.home-link {
+	flex-grow: 1;
+	font-size: 1em; /* 16px /16 */
+	font-weight: 700;
+}
+.home-link:link:not(:hover) {
+	text-decoration: none;
+}
+
+/* Nav */
+.nav {
+	display: flex;
+	gap: .5em 1em;
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+.nav-item {
+	display: inline-block;
+}
+.nav-item a[href]:not(:hover) {
+	text-decoration: none;
+}
+.nav a[href][aria-current="page"] {
+	text-decoration: underline;
+}
+
+/* Posts list */
+.postlist {
+	counter-reset: start-from var(--postlist-index);
+	list-style: none;
+	padding: 0;
+	padding-left: 1.5rem;
+}
+.postlist-item {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	counter-increment: start-from -1;
+	margin-bottom: 1em;
+}
+.postlist-item:before {
+	display: inline-block;
+	pointer-events: none;
+	content: "" counter(start-from, decimal-leading-zero) ". ";
+	line-height: 100%;
+	text-align: right;
+	margin-left: -1.5rem;
+}
+.postlist-date,
+.postlist-item:before {
+	font-size: 0.8125em; /* 13px /16 */
+	color: var(--color-gray-90);
+}
+.postlist-date {
+	word-spacing: -0.5px;
+}
+.postlist-link {
+	font-size: 1.1875em; /* 19px /16 */
+	font-weight: 700;
+	flex-basis: calc(100% - 1.5rem);
+	padding-left: .25em;
+	padding-right: .5em;
+	text-underline-position: from-font;
+	text-underline-offset: 0;
+	text-decoration-thickness: 1px;
+}
+.postlist-item-active .postlist-link {
+	font-weight: bold;
+}
+
+/* Tags */
+.post-tag {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	text-transform: capitalize;
+	font-style: italic;
+}
+.postlist-item > .post-tag {
+	align-self: center;
+}
+
+/* Tags list */
+.post-metadata {
+	display: inline-flex;
+	flex-wrap: wrap;
+	gap: .5em;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+.post-metadata time {
+	margin-right: 1em;
+}
+/**
+ * okaidia theme for JavaScript, CSS and HTML
+ * Loosely based on Monokai textmate theme by http://www.monokai.nl/
+ * @author ocodia
+ */
+
+code[class*="language-"],
+pre[class*="language-"] {
+	color: #f8f8f2;
+	background: none;
+	text-shadow: 0 1px rgba(0, 0, 0, 0.3);
+	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+	font-size: 1em;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	word-wrap: normal;
+	line-height: 1.5;
+
+	-moz-tab-size: 4;
+	-o-tab-size: 4;
+	tab-size: 4;
+
+	-webkit-hyphens: none;
+	-moz-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+	padding: 1em;
+	margin: .5em 0;
+	overflow: auto;
+	border-radius: 0.3em;
+}
+
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+	background: #272822;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+	padding: .1em;
+	border-radius: .3em;
+	white-space: normal;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+	color: #8292a2;
+}
+
+.token.punctuation {
+	color: #f8f8f2;
+}
+
+.token.namespace {
+	opacity: .7;
+}
+
+.token.property,
+.token.tag,
+.token.constant,
+.token.symbol,
+.token.deleted {
+	color: #f92672;
+}
+
+.token.boolean,
+.token.number {
+	color: #ae81ff;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+	color: #a6e22e;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string,
+.token.variable {
+	color: #f8f8f2;
+}
+
+.token.atrule,
+.token.attr-value,
+.token.function,
+.token.class-name {
+	color: #e6db74;
+}
+
+.token.keyword {
+	color: #66d9ef;
+}
+
+.token.regex,
+.token.important {
+	color: #fd971f;
+}
+
+.token.important,
+.token.bold {
+	font-weight: bold;
+}
+.token.italic {
+	font-style: italic;
+}
+
+.token.entity {
+	cursor: help;
+}
+/*
+ * New diff- syntax
+ */
+
+pre[class*="language-diff-"] {
+	--eleventy-code-padding: 1.25em;
+	padding-left: var(--eleventy-code-padding);
+	padding-right: var(--eleventy-code-padding);
+}
+.token.deleted {
+	background-color: hsl(0, 51%, 37%);
+	color: inherit;
+}
+.token.inserted {
+	background-color: hsl(126, 31%, 39%);
+	color: inherit;
+}
+
+/* Make the + and - characters unselectable for copy/paste */
+.token.prefix.unchanged,
+.token.prefix.inserted,
+.token.prefix.deleted {
+	-webkit-user-select: none;
+	user-select: none;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding-top: 2px;
+	padding-bottom: 2px;
+}
+.token.prefix.inserted,
+.token.prefix.deleted {
+	width: var(--eleventy-code-padding);
+	background-color: rgba(0,0,0,.2);
+}
+
+/* Optional: full-width background color */
+.token.inserted:not(.prefix),
+.token.deleted:not(.prefix) {
+	display: block;
+	margin-left: calc(-1 * var(--eleventy-code-padding));
+	margin-right: calc(-1 * var(--eleventy-code-padding));
+	text-decoration: none; /* override del, ins, mark defaults */
+	color: inherit; /* override del, ins, mark defaults */
+}</style>
+		
+	</head>
+	<body>
+		<a href="#main" id="skip-link" class="visually-hidden">Skip to main content</a>
+
+		<header>
+			<a href="/mi-blog-11ty/" class="home-link">Eleventy Base Blog v9</a>
+			<nav>
+				<h2 class="visually-hidden" id="top-level-navigation-menu">Top level navigation menu</h2>
+				<ul class="nav">
+					<li class="nav-item"><a href="/mi-blog-11ty/">Home</a></li>
+					<li class="nav-item"><a href="/mi-blog-11ty/blog/">Archive</a></li>
+					<li class="nav-item"><a href="/mi-blog-11ty/about/">About</a></li>
+					<li class="nav-item"><a href="/mi-blog-11ty/feed/feed.xml">Feed</a></li>
+				</ul>
+			</nav>
+		</header>
+
+		<main id="main">
+			<heading-anchors>
+				
+
+
+<h1 id="las-partes-de-la-oracion-en-ingles">Las partes de la oración en inglés</h1>
+
+<ul class="post-metadata">
+	<li><time datetime="2025-06-12">12 June 2025</time></li>
+	<li><a href="/mi-blog-11ty/tags/aprender-ingles/" class="post-tag">aprender inglés</a>, </li>
+	<li><a href="/mi-blog-11ty/tags/nivel-1/" class="post-tag"> nivel 1</a></li>
+</ul>
+
+<p>Este no es un curso, yo no existo y tu no estás desesperado por aprender inglés</p>
+<p>Asi que sigues empeñado en aprender este idioma extranjero ¿por qué? ¿no te has hartado de repetir la misma cantaleta de siempre? Que dicen que vas a mejorar tus condiciones de vida, que podrás tener un mejor trabajo, que tendrás más oportunidades, que te respetarán, que verás la vida de forma distinta, que el conocimiento casi todo está en inglés.</p>
+<p>Ya déjate de payasadas, ese futuro imaginario ni siquiera puedes afirmarlo o descartarlo porque no estás haciendo nada para comenzar.</p>
+<p>Por eso yo te voy a ayudar. Guárdate el dinero que estabas reservando para el estupido curso de ese youtuber coqueto, mejor ahórralo para el viaje que ya deberías tener planeado a uno de esos lugares donde seguro te van a menospreciar por tu color de piel pero para nada podrán insultarte sin que sepas lo que te están diciendo. Así que lápiz y papel, por ahora solo te vas a preocupar por la escritura gramatical.</p>
+<p>Mañana te ocuparás de la pronunciación pero ahora mismo no es importante.</p>
+<h2 id="parts-of-speech">Parts of Speech</h2>
+<p>Si no prestaste atención a tus clases de gramática en español, aqui no te vas a salvar. Recuerda, todos los maestros pedantes siempre tratarán de marearte con terminología universitaria, que el sustantivo, que el adverbio, que el pluscumperfecto. Y si ya es un dolor de cabeza en español, en inglés es simplemente doloroso, pero no nos queda de otra, sin estas bases será imposible que puedas entender el porqué este idioma es tan enredado a veces.</p>
+<br>
+<p><em><strong>TODO TIENE UN NOMBRE</strong></em></p>
+<p>Personas, lugares, cosas o ideas, todas son <strong>NOUN</strong> (sustantivo)</p>
+<p>teclado, mano, ella, él, calle, teléfono, ¿pero que no esta es una clase de inglés? pues entonces: dog 🐶 , icecream 🍦, desert 🏜️ (solo lleva una &quot;s&quot;), traffic light 🚦, scientist 👩‍🔬, zombi 🧟‍♂️, highway 🛣️, hospital 🏥</p>
+<details>
+  <summary><strong>Tipos de sustantivos</strong></summary>
+<ul>
+    <li><strong>Proper noun</strong> (nombre propio): London, Maria, Coca-Cola</li>
+    <li><strong>Common noun</strong> (común): city, girl, soda</li>
+    <li><strong>Concrete noun</strong>: cosas físicas que se pueden ver o tocar: apple, car</li>
+    <li><strong>Abstract noun</strong>: ideas o sentimientos: freedom, love</li>
+    <li><strong>Countable noun</strong>: que se pueden contar: book, chair</li>
+    <li><strong>Uncountable noun</strong>: no se cuentan individualmente: milk, information</li>
+    <li><strong>Collective noun</strong>: grupo de personas o cosas: team, family, audience</li>
+  </ul>
+</details>
+<br>
+<p><em><strong>CUANDO NO TIENES EL NOMBRE (O YA TE HARTASTE DE REPETIRLO)</strong></em></p>
+<p>A veces no conocemos o no existe el nombre del objeto o persona de la que hablamos, en su lugar usamos <strong>PRONOUN</strong> (pronombres):</p>
+<p>Los usaremos para decir el, ella, mio, de ellos, ese, aquel, ¿qué?, ¿cuál?, nadie, alguien, todos (los veremos más adelante, quizá 😈)</p>
+<details>
+  <summary><strong>Tipos de pronombres</strong></summary>
+<ul>
+    <li><strong>Personal pronouns</strong>: I, you, he, she, it, we, they</li>
+    <li><strong>Possessive pronouns</strong>: mine, yours, his, hers, ours, theirs</li>
+    <li><strong>Reflexive pronouns</strong>: myself, yourself, himself, herself, itself, ourselves, yourselves, themselves</li>
+    <li><strong>Relative pronouns</strong>: who, whom, whose, which, that</li>
+    <li><strong>Demonstrative pronouns</strong>: this, that, these, those</li>
+    <li><strong>Interrogative pronouns</strong>: who, what, which, whom, whose</li>
+    <li><strong>Indefinite pronouns</strong>: someone, anyone, nobody, everything</li>
+  </ul>
+</details>
+<br>
+<p><em><strong>LAS COSAS TIENEN ATRIBUTOS</strong></em></p>
+<p>Cuando hablamos o nos hablan de las cosas recurrimos a su descripción, asignamos un valor o una opinión y para ello necesitamos un <strong>ADJECTIVE</strong> (adjetivo)</p>
+<p>De algo, decimos ques es bonito, feo, mucho, poco y también si es mio, o tuyo, o nuestro, o su es mas interesante o más alto o delgado.</p>
+<details>
+  <summary><strong>Tipos de adjetivos</strong></summary>
+<ul>
+    <li><strong>Descriptive</strong>: beautiful, tall, green</li>
+    <li><strong>Quantitative</strong>: some, many, few, several</li>
+    <li><strong>Demonstrative</strong>: this, that, these, those</li>
+    <li><strong>Possessive</strong>: my, your, his, her, our, their</li>
+    <li><strong>Interrogative</strong>: which, what, whose</li>
+    <li><strong>Comparative</strong>: taller, more interesting</li>
+    <li><strong>Superlative</strong>: tallest, most interesting</li>
+  </ul>
+</details>
+<br>
+<p><em><strong>HACEMOS ALGO CON LAS COSAS Y LAS COSAS TIENEN SU RAZÓN DE ESTAR</strong></em></p>
+<p>Para expresar acciones o estados usamos un <strong>VERB</strong> (verbo) , siempre que pienses en algo debes preguntar ¿QUÉ con esa cosa, idea, pensamiento, persona? ¿la observo, la muerdo, la sujeto, la tiro? o ¿que hago yo? ¿pienso, sonrío, grito? estos son los básicos, pero hay otros algo más complicados, los iremos viendo más adelante (espero).</p>
+<details>
+  <summary><strong>Tipos de verbos</strong></summary>
+<ul>
+    <li><strong>Action verbs</strong>: expresan acción: <em>run, write, eat</em></li>
+    <li><strong>Stative verbs</strong>: expresan estado o condición: <em>know, believe, love</em></li>
+    <li><strong>Transitive verbs</strong>: necesitan objeto directo: <em>read (a book)</em></li>
+    <li><strong>Intransitive verbs</strong>: no necesitan objeto directo: <em>sleep, arrive</em></li>
+    <li><strong>Auxiliary verbs</strong>: ayudan a formar tiempos verbales: <em>be, have, do</em></li>
+    <li><strong>Modal verbs</strong>: indican posibilidad, permiso, obligación, etc.: <em>can, must, should, will, might</em></li>
+    <li><strong>Phrasal verbs</strong>: verbo + partícula: <em>give up, look after, turn on</em></li>
+  </ul>
+</details>
+<br>
+<p><em><strong>NO HACEMOS LAS COSAS DE LA MISMA FORMA EN TODAS LAS OCASIONES</strong></em></p>
+<p>Muchas veces tenemos que aclarar cómo suceden las cosas a nuestro alrededor, necesitamos el <strong>ADVERB</strong> (adverbio) para describir el verbo, un adjetivo u otro adverbio.</p>
+<p>Okey, si corro (I run 🏃) pero ¿cómo lo hago? lento (slow) 🚶, rápido (fast) 🏃💨</p>
+<p>Los adverbios nos sirven para indicar cómo, cuándo, dónde o en qué grado.</p>
+<details>
+  <summary><strong>Tipos de adverbios</strong></summary>
+<p>Según lo que modifican o expresan:</p>
+<ul>
+    <li><strong>De modo (manner):</strong> quickly, well, slowly</li>
+    <li><strong>De lugar (place):</strong> here, there, everywhere</li>
+    <li><strong>De tiempo (time):</strong> now, soon, yesterday</li>
+    <li><strong>De frecuencia (frequency):</strong> always, often, rarely</li>
+    <li><strong>De grado (degree):</strong> very, too, almost, quite</li>
+    <li><strong>Interrogativos:</strong> how, when, where, why</li>
+  </ul>
+</details>
+
+<br>
+<p><em><strong>HABLAMOS DE CÓMO LAS COSAS SE UNEN A OTRAS COSAS</strong></em></p>
+<p>Para relacionar sustantivos/pronombres con otra palabra necesitaremos una o varias <strong>PREPOSITION</strong> (preposition), así ubicamos la cosas en el espacio y tiempo. Las iremos entendiendo conforme las usemos.</p>
+<details>
+  <summary><strong>Tipos de preposiciones</strong></summary>
+<ul>
+    <li><strong>De lugar:</strong> in, on, under, behind, next to</li>
+    <li><strong>De tiempo:</strong> at, on, in, since, during</li>
+    <li><strong>De dirección/movimiento:</strong> to, into, onto, through, across</li>
+    <li><strong>De causa/razón:</strong> because of, due to</li>
+    <li><strong>De instrumento/medio:</strong> by, with</li>
+    <li><strong>Frasales (prepositional phrases):</strong> according to, in front of, in spite of</li>
+  </ul>
+</details>
+<br>
+<p><em><strong>HABLAMOS DE FORMA COMPLEJA, NARRAMOS Y UNIMOS FRASES</strong></em></p>
+<p>Y para ello sirven las <strong>CONJUNCTION</strong>(conjunciones) que nos sirven para hilar nuestros discursos, tejiendo frases, uniendo palabras, poniendo excusas y peros.</p>
+<details>
+  <summary><strong>Mostrar tipos de conjunciones</strong></summary>
+<ul>
+    <li><strong>Coordinating conjunctions:</strong> <code>and</code>, <code>but</code>, <code>or</code>, <code>nor</code>, <code>for</code>, <code>so</code>, <code>yet</code></li>
+    <li><strong>Subordinating conjunctions:</strong> <code>because</code>, <code>although</code>, <code>since</code>, <code>if</code>, <code>when</code></li>
+    <li><strong>Correlative conjunctions (pares):</strong> <code>either...or</code>, <code>neither...nor</code>, <code>not only...but also</code></li>
+  </ul>
+</details>
+<p><em><strong>SOMOS SERES EMOCIONALES</strong></em></p>
+<p>Hurra! Al fin terminamos esta lección. Usamos <strong>INTERJECTIONS</strong> (interjecciones)  para enfatizar la emoción que nos causa algo.</p>
+<details>
+  <summary><strong>Tipos de interjecciones</strong></summary>
+<ul>
+    <li><strong>De emoción:</strong> Wow!, Ouch!, Yay!</li>
+    <li><strong>De saludo:</strong> Hi!, Hello!</li>
+    <li><strong>De acuerdo/desacuerdo:</strong> Yes!, No!</li>
+    <li><strong>De duda o interrupción:</strong> Uh..., Hmm..., Well...</li>
+  </ul>
+</details>
+<br>
+<p>Pero no me hagas mucho caso, aqui te dejo una chuletilla, peladita y a la boca</p>
+<picture><source type="image/avif" srcset="/mi-blog-11ty/blog/2025-06-12-holamundo/lz25ScuRnr-720.avif 720w"><source type="image/webp" srcset="/mi-blog-11ty/blog/2025-06-12-holamundo/lz25ScuRnr-720.webp 720w"><img loading="lazy" decoding="async" src="/mi-blog-11ty/blog/2025-06-12-holamundo/lz25ScuRnr-720.jpeg" alt="Every name is called a NOUN, As field and fountain, street and town; In place of noun the PRONOUN stands As he and she can clap their hands; The ADJECTIVE describes a thing, As magic wand and bridal ring; The VERB means action, something done-To read, to write, to jump, to run; How things are done, the ADVERBS tell, As quickly, slowly, badly, well.The PREPOSITION shows relation, As in the street or at the station. CONJUNCTIONS join, in many ways, Sentences, words, or phrase and phrase, The INTERJECTION cries out,'Hark!' I need and exclamation mark!" width="720" height="733"></picture>
+Fuente: <a href="https://es.pinterest.com/pin/6544361953583999/">Pinterest</a>
+<ul class="links-nextprev"><li class="links-nextprev-prev">← Previous<br> <a href="/mi-blog-11ty/blog/fourthpost/">This is my fourth post</a></li>
+</ul>
+
+			</heading-anchors>
+		</main>
+
+		<footer>
+			<p>
+				<em>Built with <a href="https://www.11ty.dev/">Eleventy v3.1.1</a></em>
+			</p>
+		</footer>
+
+		<!-- This page `/blog/2025-06-12-holamundo/` was built on 2025-06-12T20:01:54.180Z -->
+		<script type="module" src="/mi-blog-11ty/dist/xbxy_EL6cU.js"></script>
+	</body>
+</html>
